@@ -7,7 +7,7 @@ namespace WebApplication1.Enum
 {
     public enum KindCategory
     {
-        Dog,
-        Cat
+        Куче,
+        Котка
     }
 }

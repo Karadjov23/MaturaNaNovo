@@ -10,6 +10,7 @@ namespace WebApplication1.Data
     {
         public int Id { get; set; }
         [Required]
+        [Display(Name ="Порода Куче/Котка")]
         public string Breeds { get; set; }
 
         public ICollection<Animal> Animals { get; set; }

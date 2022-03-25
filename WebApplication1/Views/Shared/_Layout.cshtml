@@ -3,6 +3,7 @@
 @using Microsoft.AspNetCore
 @inject SignInManager<User> SignIn
 @inject UserManager<User> Manager
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,17 +26,22 @@
                     <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                         <ul class="navbar-nav flex-grow-1">
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Начало</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Animal" asp-action="Index">Gey</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Animal" asp-action="Index">Осинови</a>
+                            </li>
+                           
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Article" asp-action="Index">Статии</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Breed" asp-action="Index">Gey Kuche</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Employee" asp-action="Index">Служители</a>
+                            </li>
+                           
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Signal" asp-action="Index">Сигнализирай</a>
                             </li>
 
                         </ul>
