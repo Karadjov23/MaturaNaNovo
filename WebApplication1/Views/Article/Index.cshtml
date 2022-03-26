@@ -1,14 +1,88 @@
 ﻿@model IEnumerable<WebApplication1.Data.Article>
-
+@using WebApplication1.Data
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore
+@inject SignInManager<User> SignIn
+@inject UserManager<User> Manager
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
+
+@if (SignIn.IsSignedIn(User) && await Manager.IsInRoleAsync(Manager.GetUserAsync(User).Result, "admin"))
+{<h1>Създай нова статия</h1>
+    <p>
+        <a asp-action="Create" class="btn btn-outline-success">Създай </a>
+    </p>
+    <br />
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-4">
+                <div class="card text-center" style="width: 18rem; ">
+                    <img class="card-img-top" src="@item.Image" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Name</h5>
+                        <p class="card-text">Статия:   @item.ArticleText </p>
+                    </div>
+                    <div class="card-body">
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-primary">Редактирай</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-secondary">Детайли</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger">Изтриване</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+else if (SignIn.IsSignedIn(User) == true)
+{
+    
+    <br />
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-4">
+                <div class="card text-center" style="width: 18rem; ">
+                    <a asp-action="Details" asp-route-id="@item.Id"><img class="card-img-top" src="@item.Image" alt="Card image cap"></a>
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Name</h5>
+                        <p class="card-text">Статия:   @item.ArticleText </p>
+                    </div>
+                    <div class="card-body">
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+  
+    <br />
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-4">
+                <div class="card text-center" style="width: 18rem; ">
+                    <a asp-action="Details" asp-route-id="@item.Id"><img class="card-img-top" src="@item.Image" alt="Card image cap"></a>
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Name</h5>
+                        <p class="card-text">Статия:   @item.ArticleText </p>
+                    </div>
+                    <div class="card-body">
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+<!--
 <table class="table">
     <thead>
         <tr>
@@ -51,3 +125,4 @@
 }
     </tbody>
 </table>
+    -->

@@ -10,11 +10,11 @@
 
 
 
-<p>
+
+@if (SignIn.IsSignedIn(User) && await Manager.IsInRoleAsync(Manager.GetUserAsync(User).Result, "admin"))
+{<p>
     <a asp-action="Create">Създай</a>
 </p>
-@if (SignIn.IsSignedIn(User) && await Manager.IsInRoleAsync(Manager.GetUserAsync(User).Result, "admin"))
-{
     <table class="table">
         <thead>
             <tr>

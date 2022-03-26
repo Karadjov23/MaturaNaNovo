@@ -9,12 +9,16 @@ namespace WebApplication1.Data
     public class Article
     {
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Моля въведи име на статията")]
+        [Display(Name="Име на статията")]
         public string Name { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Моля въведи текст за статията")]
+        [Display(Name ="Текст за статията")]
         public string ArticleText { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Моля сложи снимка за статията")]
+        [Display(Name = "Снимка")]
         public string Image { get; set; }
+        [Display(Name = "Дата на създаване")]
         public DateTime Date { get; set; }
         public Article()
         {

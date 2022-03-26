@@ -19,8 +19,8 @@
         @foreach (var item in Model)
         {
             <div class="col-4">
-                <div class="card text-center"  style="width: 18rem; ">
-                    <img class="card-img-top" src="@item.Image" alt="Card image cap" >
+                <div class="card text-center" style="width: 18rem; ">
+                    <img class="card-img-top" src="@item.Image" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">@item.Name</h5>
                         <p class="card-text">Възраст: @item.Age г. , Пол @item.Gender </p>
@@ -34,36 +34,49 @@
             </div>
         }
     </div>
-} else if (SignIn.IsSignedIn(User) == true)
+}
+else if (SignIn.IsSignedIn(User) == true)
 {
-    
-    @foreach (var item in Model)
-    {
-        <div class="card text-center" style="width: 18rem;">
-            <a asp-action="Details" asp-route-id="@item.Id"><img class="card-img-top" src="@item.Image" alt="Card image cap"></a>
 
-            <div class="card-body">
-                <h5 class="card-title">@item.Name</h5>
-                <p class="card-text">Възраст: @item.Age г. , Пол @item.Gender </p>
+    <br />
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-4">
+                <div class="card text-center" style="width: 18rem; ">
+                    <a asp-action="Details" asp-route-id="@item.Id"><img class="card-img-top" src="@item.Image" alt="Card image cap"></a>
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Name</h5>
+                        <p class="card-text">Възраст: @item.Age г. , Пол @item.Gender </p>
+                    </div>
+                    <div class="card-body">
+                    </div>
+                </div>
             </div>
-        </div>
-    }
+        }
+    </div>
 }
 else
 {
 
 
-    @foreach (var item in Model)
-    {
-        <div class="card text-center" style="width: 18rem;">
-            <a asp-action="Details" asp-route-id="@item.Id"><img class="card-img-top" src="@item.Image" alt="Card image cap"></a>
-
-            <div class="card-body">
-                <h5 class="card-title">@item.Name</h5>
-                <p class="card-text">Възраст: @item.Age г. , Пол @item.Gender </p>
+    <br />
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-4">
+                <div class="card text-center" style="width: 18rem; ">
+                    <a asp-action="Details" asp-route-id="@item.Id"><img class="card-img-top" src="@item.Image" alt="Card image cap"></a>
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Name</h5>
+                        <p class="card-text">Възраст: @item.Age г. , Пол @item.Gender </p>
+                    </div>
+                    <div class="card-body">
+                    </div>
+                </div>
             </div>
-        </div>
-    }
+        }
+    </div>
 }
 
 

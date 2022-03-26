@@ -1,45 +1,51 @@
 ﻿@model WebApplication1.Data.Article
-
+@using WebApplication1.Data
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore
+@inject SignInManager<User> SignIn
+@inject UserManager<User> Manager
 @{
     ViewData["Title"] = "Delete";
 }
+@if (SignIn.IsSignedIn(User) && await Manager.IsInRoleAsync(Manager.GetUserAsync(User).Result, "admin"))
+{   <h1>Изтриване на статията</h1>
 
-<h1>Delete</h1>
 
-<h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Article</h4>
+
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Name)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Name)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.ArticleText)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ArticleText)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Image)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Image)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Date)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Date)
         </dd>
     </dl>
-    
+
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Изтриване" class="btn btn-danger" /> |
+        <a asp-action="Index">Върни се назад</a>
     </form>
 </div>
+}
+else { }

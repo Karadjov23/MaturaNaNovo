@@ -7,7 +7,7 @@ namespace WebApplication1.Enum
 {
     public enum Gender
     {
-        Мъжки=1,
+        Мъжки,
         Женски
     }
 }
