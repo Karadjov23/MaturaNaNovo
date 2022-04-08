@@ -11,7 +11,8 @@ namespace WebApplication1.Data
         public int Id { get; set; }
         public string UserId { get; set; }
         public User User { get; set; }
-   
+        [Required(ErrorMessage ="Моля въведете ситуацията")]
+        [Display(Name ="Сигнала за подаване")]
         public string Description { get; set; }
         public DateTime Date { get; set; }
         public Signal()

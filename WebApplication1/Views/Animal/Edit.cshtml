@@ -70,11 +70,13 @@
 </div>
 
 <div>
-    <a asp-action="Index">Върни се назад </a>
+    <a asp-action="Index"class="btn btn-primary">Върни се назад </a>
 </div>
 }
 
-else { }
+else { 
+   
+}
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

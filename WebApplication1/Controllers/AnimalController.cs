@@ -10,6 +10,7 @@ using WebApplication1.Data;
 
 namespace WebApplication1.Controllers
 {
+   
     public class AnimalController : Controller
     {
         private readonly ApplicationDbContext _context;

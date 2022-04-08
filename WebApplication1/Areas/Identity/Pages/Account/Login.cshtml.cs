@@ -22,7 +22,7 @@ namespace WebApplication1.Areas.Identity.Pages.Account
         private readonly SignInManager<User> _signInManager;
         private readonly ILogger<LoginModel> _logger;
 
-        public LoginModel(SignInManager<User> signInManager, 
+        public LoginModel(SignInManager<User> signInManager,
             ILogger<LoginModel> logger,
             UserManager<User> userManager)
         {
@@ -42,16 +42,19 @@ namespace WebApplication1.Areas.Identity.Pages.Account
         public string ErrorMessage { get; set; }
 
         public class InputModel
-        {
-            [Required]
+        {[Required(ErrorMessage ="Въведи име")]
+        [Display(Name ="Име")]
+            public string FirstName { get; set; }
+            [Required(ErrorMessage = "Въведи Емейл")]
             [EmailAddress]
+            [Display(Name = "Емейл")]
             public string Email { get; set; }
-
-            [Required]
+            [Display(Name = "Парола")]
+            [Required(ErrorMessage = "Въведи парола")]
             [DataType(DataType.Password)]
             public string Password { get; set; }
 
-            [Display(Name = "Remember me?")]
+            [Display(Name = "Запомняне?")]
             public bool RememberMe { get; set; }
         }
 
@@ -77,7 +80,7 @@ namespace WebApplication1.Areas.Identity.Pages.Account
             returnUrl ??= Url.Content("~/");
 
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-        
+
             if (ModelState.IsValid)
             {
                 // This doesn't count login failures towards account lockout

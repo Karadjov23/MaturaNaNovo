@@ -10,6 +10,7 @@ using WebApplication1.Data;
 
 namespace WebApplication1.Controllers
 {
+    [Authorize]
     public class BreedController : Controller
     {
         private readonly ApplicationDbContext _context;

@@ -13,7 +13,7 @@
 
 @if (SignIn.IsSignedIn(User) && await Manager.IsInRoleAsync(Manager.GetUserAsync(User).Result, "admin"))
 {<p>
-    <a asp-action="Create">Създай</a>
+    <a asp-action="Create" class="btn btn-outline-success">Създай</a>
 </p>
     <table class="table">
         <thead>

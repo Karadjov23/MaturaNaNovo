@@ -1,0 +1,35 @@
+﻿<div class="container">
+    <p></p>
+    <div class="row">
+        <div class="col-sm-12 col-lg-10">
+            <form asp-action="Index" method="post" class="form-horizontal" role="form">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label a class="control-label"></label>
+                    <div>
+                        <label for="Name" class="control-label">Име: </label>
+                        <input id="Name" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Name" class="control-label">Фамилия: </label>
+                    <input id="Name" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="Email" class="control-label">Емейл: </label>
+                    <input id="Email" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="donation" class="control-label">Дарение: </label>
+                    <input id="donation" class="form-control" />
+                </div>
+  
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-5">
+                        <input type="submit" class="btn btn-primary" value="Благодаря Ви!" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

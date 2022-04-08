@@ -49,20 +49,26 @@ namespace WebApplication1.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
+            [Required(ErrorMessage ="Моля въведи  име")]
+            [Display(Name = "Име")]
+            public string FirstName { get; set; }
+            [Required(ErrorMessage = "Моля въведи  Фамилия")]
+            [Display(Name = "Фамилия")]
+            public string LastName { get; set; }
+            [Required(ErrorMessage = "Моля въведи  Емейл")]
             [EmailAddress]
-            [Display(Name = "Email")]
+            [Display(Name = "Емейл")]
             public string Email { get; set; }
 
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [Required(ErrorMessage = "Моля въведи парола")]
+            [StringLength(100, ErrorMessage = "Да е поне 6 символа.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Password")]
+            [Display(Name = "Парола")]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Display(Name = "Потвърди паролата")]
+            [Compare("Password", ErrorMessage = "Паролата не е правилна.")]
             public string ConfirmPassword { get; set; }
         }
 
@@ -79,11 +85,11 @@ namespace WebApplication1.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = Input.Email, Email = Input.Email };
+                var user = new User { UserName = Input.Email, Email = Input.Email ,FirstName = Input.FirstName,LastName = Input.LastName};
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User created a new account with password.");
+                    _logger.LogInformation("Потребителя си направи акаунт");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));

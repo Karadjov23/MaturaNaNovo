@@ -1,47 +1,71 @@
 ﻿@model IEnumerable<WebApplication1.Data.Signal>
-
+@using WebApplication1.Data
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore
+@inject SignInManager<User> SignIn
+@inject UserManager<User> Manager
 @{
     ViewData["Title"] = "Index";
 }
+<style>
+    h1 {
+        text-align: center;
+    }
+</style>
+@if (SignIn.IsSignedIn(User) && await Manager.IsInRoleAsync(Manager.GetUserAsync(User).Result, "admin"))
+{<table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.User)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.User)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Date)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
-    </tbody>
-</table>
+else if (SignIn.IsSignedIn(User) == true)
+{
+    <div class="bg-image d-flex justify-content-center align-items-center"
+         style="background-image: url('https://c.stocksy.com/a/ql0600/z9/1432934.jpg'); height: 79vh; ">
+
+        <p>
+            <a asp-action="Create" class="btn btn-dark">Подайте сигнала от тук</a>
+        </p>
+
+    </div>
+}
+else
+{<h1 class="">Не сте в акаунта си, не може да подадете сигнал</h1>
+
+    <div class="bg-image d-flex justify-content-center align-items-center"
+         style=" background-image: url('https://media.npr.org/assets/img/2021/04/27/prancer_wide-db59609b5bd96c9e56e4dfe32d198461197880c2.jpg?s=1400'); height: 80vh; ">
+
+    </div>
+}
