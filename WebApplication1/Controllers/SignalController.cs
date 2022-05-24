@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,19 +10,20 @@ using WebApplication1.Data;
 
 namespace WebApplication1.Controllers
 {
-    
     public class SignalController : Controller
     {
         private readonly ApplicationDbContext _context;
-
-        public SignalController(ApplicationDbContext context)
+        private readonly UserManager<User> _userManager;
+        public SignalController(ApplicationDbContext context, UserManager<User> userManager)
         {
+            _userManager = userManager;
             _context = context;
         }
 
         // GET: Signal
         public async Task<IActionResult> Index()
         {
+            
             var applicationDbContext = _context.Signals.Include(s => s.User);
             return View(await applicationDbContext.ToListAsync());
         }
@@ -62,11 +63,12 @@ namespace WebApplication1.Controllers
         {
             if (ModelState.IsValid)
             {
+                signal.UserId = _userManager.GetUserId(User);
                 _context.Add(signal);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", signal.UserId);
+           // ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", signal.UserId);
             return View(signal);
         }
 
